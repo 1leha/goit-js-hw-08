@@ -19,10 +19,14 @@ function onFormInput(e) {
 
 function onReload() {
   if (localStorage.getItem(FORM_STATE)) {
-    const loadedOptions = JSON.parse(localStorage.getItem(FORM_STATE));
+    try {
+      const loadedOptions = JSON.parse(localStorage.getItem(FORM_STATE));
 
-    savedOptions.email = email.value = loadedOptions.email;
-    savedOptions.message = message.value = loadedOptions.message;
+      savedOptions.email = email.value = loadedOptions.email;
+      savedOptions.message = message.value = loadedOptions.message;
+    } catch (err) {
+      console.log(err.name);
+    }
   }
 }
 
