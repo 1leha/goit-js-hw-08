@@ -13,14 +13,14 @@ form.addEventListener('submit', onSubmit);
 // console.dir(form);
 
 function onFormInput(e) {
-  savedOptions[e.target.name] = e.target.value;
-  localStorage.setItem(FORM_STATE, JSON.stringify(savedOptions));
+  saveOptions(e);
+  saveStorageState(savedOptions);
 }
 
 function onReload() {
   if (localStorage.getItem(FORM_STATE)) {
     try {
-      const loadedOptions = JSON.parse(localStorage.getItem(FORM_STATE));
+      const loadedOptions = loadStorageState(FORM_STATE);
 
       savedOptions.email = email.value = loadedOptions.email;
       savedOptions.message = message.value = loadedOptions.message;
@@ -35,3 +35,16 @@ function onSubmit(e) {
   form.reset();
   localStorage.removeItem(FORM_STATE);
 }
+
+function saveStorageState(savedOptions) {
+  localStorage.setItem(FORM_STATE, JSON.stringify(savedOptions));
+}
+
+function saveOptions(e) {
+  savedOptions[e.target.name] = e.target.value;
+}
+
+function loadStorageState(key) {
+  return JSON.parse(localStorage.getItem(key));
+}
+
