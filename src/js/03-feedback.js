@@ -33,6 +33,7 @@ function onReload() {
 function onSubmit(e) {
   e.preventDefault();
   form.reset();
+  console.log(savedOptions);
   localStorage.removeItem(FORM_STATE);
 }
 
@@ -47,4 +48,3 @@ function saveOptions(e) {
 function loadStorageState(key) {
   return JSON.parse(localStorage.getItem(key));
 }
-
