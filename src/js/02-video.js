@@ -4,7 +4,6 @@ import throttle from 'lodash.throttle';
 const iframe = document.getElementById('vimeo-player');
 const TIME_KEY = 'videoplayer-current-time';
 
-
 const player = new Player(iframe);
 
 player.on('play', playFromPaused);
@@ -17,7 +16,7 @@ function currentTimeToLocalStorage({ seconds }) {
 function playFromPaused() {
   const stopedTime = localStorage.getItem(TIME_KEY);
 
-  if (stopedTime > 0) {
+  if (stopedTime) {
     player.setCurrentTime(stopedTime);
   }
 }
